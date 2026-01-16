@@ -20,6 +20,7 @@ import {
   ChevronRight,
   ChevronLeft,
   X,
+  Sparkles,
 } from 'lucide-react';
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen, sidebarMinimized, setSidebarMinimized }) => {
@@ -32,6 +33,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, sidebarMinimized, setSidebarMini
     { id: 'room', label: 'Rooms', icon: Home, path: '/room-management' },
     { id: 'reservations', label: 'Reservations', icon: Calendar, path: '/reservation-management' },
     { id: 'restaurant-bar', label: 'Restaurant & Bar', icon: Utensils, path: '/restaurant-bar-management' },
+    { id: 'spa-wellness', label: 'Spa & Wellness', icon: Sparkles, path: '/spa-wellness' },
     { id: 'billing', label: 'Billing & Invoice', icon: FileText, path: '/billing-invoice' },
     { id: 'analytics', label: 'Analytics & Reports', icon: BarChart3, path: '/analytics' },
     { id: 'settings', label: 'Settings', icon: Settings, path: '/settings' },

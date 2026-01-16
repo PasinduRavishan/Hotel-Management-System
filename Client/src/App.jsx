@@ -12,6 +12,7 @@ import ReservationManagement from './screens/ReservationManagement/ReservationMa
 import RoomManagement from './screens/RoomManaagemnt/RoomManagement';
 import RestaurantBarManagement from './screens/Restaurant&BarManagement/RestaurantBarManagement';
 import RestaurantAnalytics from './screens/RestaurantAnalytics';
+import SpaAndWellnessManagement from './screens/SpaAndWellness/SpaAndWellnessManagement';
 import { useContext } from 'react';
 import { AuthContext } from './components/context/AuthContext';
 import { Navigate } from 'react-router-dom';
@@ -47,6 +48,7 @@ const App = () => {
             <Route path="/reservation-management" element={<ProtectedRoute><ReservationManagement /></ProtectedRoute>} />
             <Route path="/room-management" element={<ProtectedRoute><RoomManagement /></ProtectedRoute>} />
             <Route path="/restaurant-bar-management" element={<ProtectedRoute><RestaurantBarManagement /></ProtectedRoute>} />
+            <Route path="/spa-wellness" element={<ProtectedRoute><SpaAndWellnessManagement /></ProtectedRoute>} />
             <Route path="/analytics" element={<ProtectedRoute><RestaurantAnalytics /></ProtectedRoute>} />
           </Route>
         </Routes>

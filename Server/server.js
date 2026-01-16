@@ -9,6 +9,7 @@ const roomRateRoutes = require('./routes/RoomManaagemnt/roomRateRoutes');
 const maintenanceRoutes = require('./routes/RoomManaagemnt/maintenanceRoutes');
 const roomAvailabilityRoutes = require('./routes/RoomManaagemnt/roomAvailabilityRoutes');
 const staffMember = require('./routes/RoomManaagemnt/staffMemberRoutess');
+const conciergeRoutes = require('./routes/RoomManaagemnt/conciergeRoutes');
 const bookingRoutes = require('./routes/ReservationManagement/bookingRoutes');
 const guestRoutes = require('./routes/ReservationManagement/guestRoutes');
 const checkInOutRoutes = require('./routes/ReservationManagement/checkInOutRoutes');
@@ -21,6 +22,7 @@ const exportRoutes = require('./routes/exports');
 const settingsRoutes = require('./routes/settings');
 const authRoutes = require('./routes/auth');
 const usersRoutes = require('./routes/users');
+const spaRoutes = require('./routes/SpaAndWellness');
 
 const app = express();
 
@@ -39,6 +41,7 @@ app.use('/api/room-rates', roomRateRoutes);
 app.use('/api/roomMaintenance', maintenanceRoutes);
 app.use('/api/roomAvailability', roomAvailabilityRoutes);
 app.use('/api/staffMembers', staffMember);
+app.use('/api/concierge', conciergeRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/guests', guestRoutes);
 app.use('/api/checkinout', checkInOutRoutes);
@@ -52,6 +55,7 @@ app.use('/api/exports', exportRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRoutes);
+app.use('/api/spa', spaRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
