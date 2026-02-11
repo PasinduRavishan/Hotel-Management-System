@@ -4,17 +4,31 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
-const roomRoutes = require('./routes/roomRoutes'); 
-const roomRateRoutes = require('./routes/roomRateRoutes');
-const maintenanceRoutes = require('./routes/maintenanceRoutes');
-const roomAvailabilityRoutes = require('./routes/roomAvailabilityRoutes');
-const staffMember = require('./routes/staffMemberRoutess');
+const roomRoutes = require('./routes/RoomManaagemnt/roomRoutes'); 
+const roomRateRoutes = require('./routes/RoomManaagemnt/roomRateRoutes');
+const maintenanceRoutes = require('./routes/RoomManaagemnt/maintenanceRoutes');
+const roomAvailabilityRoutes = require('./routes/RoomManaagemnt/roomAvailabilityRoutes');
+const staffMember = require('./routes/RoomManaagemnt/staffMemberRoutess');
+const conciergeRoutes = require('./routes/RoomManaagemnt/conciergeRoutes');
+const bookingRoutes = require('./routes/ReservationManagement/bookingRoutes');
+const guestRoutes = require('./routes/ReservationManagement/guestRoutes');
+const checkInOutRoutes = require('./routes/ReservationManagement/checkInOutRoutes');
+const Cancellation = require('./routes/ReservationManagement/cancelRoutes');
+const specialRequestRoutes = require('./routes/ReservationManagement/specialRequestRoutes');
+const billingRoutes = require('./routes/billingRoutes');
+const menuRoutes = require('./routes/Restaurant&BarManagement/menuRoutes');
+const orderRoutes = require('./routes/Restaurant&BarManagement/orderRoutes');
+const exportRoutes = require('./routes/exports');
+const settingsRoutes = require('./routes/settings');
+const authRoutes = require('./routes/auth');
+const usersRoutes = require('./routes/users');
+const spaRoutes = require('./routes/SpaAndWellness');
 
 const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:5173'],
+  origin: ['http://localhost:5173', 'https://lushhotelcloud.com'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'pragma', 'cache-control', 'expires', 'x-auth-token'],
@@ -27,6 +41,21 @@ app.use('/api/room-rates', roomRateRoutes);
 app.use('/api/roomMaintenance', maintenanceRoutes);
 app.use('/api/roomAvailability', roomAvailabilityRoutes);
 app.use('/api/staffMembers', staffMember);
+app.use('/api/concierge', conciergeRoutes);
+app.use('/api/bookings', bookingRoutes);
+app.use('/api/guests', guestRoutes);
+app.use('/api/checkinout', checkInOutRoutes);
+app.use('/api/cancellations', Cancellation);
+app.use('/api/specialrequests', specialRequestRoutes);
+app.use('/api/billing', billingRoutes);
+
+app.use('/api/menu', menuRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/exports', exportRoutes);
+app.use('/api/settings', settingsRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/users', usersRoutes);
+app.use('/api/spa', spaRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

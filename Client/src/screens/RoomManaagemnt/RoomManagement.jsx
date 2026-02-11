@@ -56,7 +56,8 @@ import {
   Settings,
   AlertTriangle,
   Wrench,
-  Info
+  Info,
+  Briefcase,
 } from 'lucide-react';
 import Sidebar from '../Sidebar';
 import RoomInventory from './RoomInventory';
@@ -64,6 +65,7 @@ import AvailabilityCalendar from './AvailabilityCalender';
 import RoomStatus from './RoomStatus';
 import RoomRate from './RoomRate';
 import Maintenance from './Maintenance';
+import ConciergeServices from './Concierge/ConciergeServices';
 
 const RoomManagement = () => {
   const [activeTab, setActiveTab] = useState('inventory');
@@ -106,6 +108,13 @@ const RoomManagement = () => {
       component: Maintenance,
       color: 'orange'
     },
+    { 
+      id: 'concierge', 
+      label: 'Concierge Services', 
+      icon: Briefcase,
+      component: ConciergeServices,
+      color: 'red'
+    },
   ];
 
   const getTabStyles = (tab, isActive) => {
@@ -115,6 +124,7 @@ const RoomManagement = () => {
       yellow: isActive ? 'border-yellow-500 text-yellow-600 bg-yellow-50' : 'border-transparent text-gray-500 hover:text-yellow-600 hover:border-yellow-300',
       purple: isActive ? 'border-purple-500 text-purple-600 bg-purple-50' : 'border-transparent text-gray-500 hover:text-purple-600 hover:border-purple-300',
       orange: isActive ? 'border-orange-500 text-orange-600 bg-orange-50' : 'border-transparent text-gray-500 hover:text-orange-600 hover:border-orange-300',
+      red: isActive ? 'border-red-500 text-red-600 bg-red-50' : 'border-transparent text-gray-500 hover:text-red-600 hover:border-red-300',
     };
     return colorMap[tab.color];
   };
