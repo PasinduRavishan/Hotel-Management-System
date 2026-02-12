@@ -24,6 +24,29 @@ const authRoutes = require('./routes/auth');
 const usersRoutes = require('./routes/users');
 const spaRoutes = require('./routes/SpaAndWellness');
 
+// Connect to MongoDB with connection caching for serverless
+let isConnected = false;
+
+const connectDB = async () => {
+  if (isConnected) return;
+  if (mongoose.connection.readyState === 1) {
+    isConnected = true;
+    return;
+  }
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      dbName: 'hotel-management',
+      serverSelectionTimeoutMS: 5000,
+    });
+    isConnected = true;
+    console.log('DB connect successful');
+  } catch (err) {
+    console.error('DB connection error:', err);
+    isConnected = false;
+    throw err;
+  }
+};
+
 const app = express();
 
 // Middleware
@@ -34,6 +57,16 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'pragma', 'cache-control', 'expires', 'x-auth-token'],
 }));
 app.use(express.json({ limit: '10mb' }));
+
+// Ensure DB is connected before handling any request
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    res.status(503).json({ error: 'Database connection failed. Please try again.' });
+  }
+});
 
 // Health check root route
 app.get('/', (req, res) => {
@@ -67,26 +100,6 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Something went wrong!', error: err.message });
 });
-
-// Connect to MongoDB with connection caching for serverless
-let isConnected = false;
-
-const connectDB = async () => {
-  if (isConnected) return;
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      dbName: 'hotel-management',
-    });
-    isConnected = true;
-    console.log('DB connect successful');
-  } catch (err) {
-    console.error('DB connection error:', err);
-    throw err;
-  }
-};
-
-// Connect on startup (non-blocking for serverless)
-connectDB().catch(console.error);
 
 // Start server (only when not running as a serverless function)
 if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
