@@ -63,19 +63,33 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Something went wrong!', error: err.message });
 });
 
-// Connect to MongoDB
-mongoose
-  .connect(process.env.MONGO_URI, {
-    dbName: 'hotel-management',
-  })
-  .then(() => console.log('DB connect successful'))
-  .catch((err) => {
-    console.error('DB connection error:', err);
-    process.exit(1);
-  });
+// Connect to MongoDB with connection caching for serverless
+let isConnected = false;
 
-// Start server
-const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+const connectDB = async () => {
+  if (isConnected) return;
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      dbName: 'hotel-management',
+    });
+    isConnected = true;
+    console.log('DB connect successful');
+  } catch (err) {
+    console.error('DB connection error:', err);
+    throw err;
+  }
+};
+
+// Connect on startup (non-blocking for serverless)
+connectDB().catch(console.error);
+
+// Start server (only when not running as a serverless function)
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  const PORT = process.env.PORT || 8000;
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+// Export for Vercel serverless
+module.exports = app;
