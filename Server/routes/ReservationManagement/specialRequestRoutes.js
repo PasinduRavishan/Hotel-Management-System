@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     res.json(requests);
   } catch (err) {
     try {
-      const updateRestaurantAnalytics = require('../../models/Restaurant&BarManagement/updateAnalytics');
+      const updateRestaurantAnalytics = require('../../models/RestaurantBarManagement/updateAnalytics');
       await updateRestaurantAnalytics({
         items: [],
         amount: 0,

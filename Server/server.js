@@ -16,8 +16,8 @@ const checkInOutRoutes = require('./routes/ReservationManagement/checkInOutRoute
 const Cancellation = require('./routes/ReservationManagement/cancelRoutes');
 const specialRequestRoutes = require('./routes/ReservationManagement/specialRequestRoutes');
 const billingRoutes = require('./routes/billingRoutes');
-const menuRoutes = require('./routes/Restaurant&BarManagement/menuRoutes');
-const orderRoutes = require('./routes/Restaurant&BarManagement/orderRoutes');
+const menuRoutes = require('./routes/RestaurantBarManagement/menuRoutes');
+const orderRoutes = require('./routes/RestaurantBarManagement/orderRoutes');
 const exportRoutes = require('./routes/exports');
 const settingsRoutes = require('./routes/settings');
 const authRoutes = require('./routes/auth');
@@ -34,6 +34,11 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'pragma', 'cache-control', 'expires', 'x-auth-token'],
 }));
 app.use(express.json({ limit: '10mb' }));
+
+// Health check root route
+app.get('/', (req, res) => {
+  res.json({ status: 'ok', message: 'Hotel Management API is running' });
+});
 
 // Routes
 app.use('/api/rooms', roomRoutes); 

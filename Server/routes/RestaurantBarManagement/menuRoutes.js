@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Menu = require('../../models/Restaurant&BarManagement/menu');
+const Menu = require('../../models/RestaurantBarManagement/menu');
 
 router.get('/', async (req, res) => {
   try {

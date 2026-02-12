@@ -10,7 +10,7 @@ import Settings from './screens/Settings';
 import ProtectedRoute from './components/ProtectedRoute';
 import ReservationManagement from './screens/ReservationManagement/ReservationManagement';
 import RoomManagement from './screens/RoomManaagemnt/RoomManagement';
-import RestaurantBarManagement from './screens/Restaurant&BarManagement/RestaurantBarManagement';
+import RestaurantBarManagement from './screens/RestaurantBarManagement/RestaurantBarManagement';
 import RestaurantAnalytics from './screens/RestaurantAnalytics';
 import SpaAndWellnessManagement from './screens/SpaAndWellness/SpaAndWellnessManagement';
 import { useContext } from 'react';

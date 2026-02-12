@@ -1,6 +1,6 @@
 const express = require('express');
 const Booking = require('../models/ReservationManagement/Booking');
-const Order = require('../models/Restaurant&BarManagement/orders');
+const Order = require('../models/RestaurantBarManagement/orders');
 const Room = require('../models/RoomManaagemnt/Room');
 const { Payment } = require('../models/Billing');
 

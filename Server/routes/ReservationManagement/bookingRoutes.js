@@ -134,7 +134,7 @@ router.post('/', async (req, res) => {
     await booking.save();
     console.log('Booking created:', booking.id, 'with guestId:', guest.id);
       try {
-        const updateRestaurantAnalytics = require('../../models/Restaurant&BarManagement/updateAnalytics');
+        const updateRestaurantAnalytics = require('../../models/RestaurantBarManagement/updateAnalytics');
         await updateRestaurantAnalytics({
           amount: bookingData.totalAmount,
           items: bookingData.items || [],

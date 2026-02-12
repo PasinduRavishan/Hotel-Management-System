@@ -138,7 +138,7 @@ router.post('/cancel/:id', async (req, res) => {
     });
 
       try {
-        const updateRestaurantAnalytics = require('../../models/Restaurant&BarManagement/updateAnalytics');
+        const updateRestaurantAnalytics = require('../../models/RestaurantBarManagement/updateAnalytics');
         await updateRestaurantAnalytics({
           items: [],
           amount: 0,
@@ -222,7 +222,7 @@ router.post('/noshow/:id', async (req, res) => {
     });
 
       try {
-        const updateRestaurantAnalytics = require('../../models/Restaurant&BarManagement/updateAnalytics');
+        const updateRestaurantAnalytics = require('../../models/RestaurantBarManagement/updateAnalytics');
         await updateRestaurantAnalytics({
           items: [],
           amount: 0,
